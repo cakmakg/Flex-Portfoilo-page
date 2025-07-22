@@ -17,7 +17,7 @@ font-family: "Comfortaa", sans-serif; */
   --bg-color: #212a34;
   --secong-bg-color: #343f4e;
   --text-color: #fff;
-  --main-color: #d80404;
+  --main-color: #d0404d;
 }
 body {
   background: var(--bg-color);
@@ -86,17 +86,21 @@ section {
 
 .home-img {
   /* border: 2px solid white; */
-  width: 20%;
+  height: 100%;
+  width: 100%;
+  border-radius: 10%;
+  object-fit: cover;
 }
 .home-img img {
-  width: 100%;
-  max-width: 20rem;
+  width: 400px;     /* ya da istediğin kadar: 150px, %50, vs */
+  height: auto;     /* oranı korur */
   border-radius: 10%;
-  animation: floatImage 3s ease-in-out infinite;
+  object-fit: cover;
 }
+
 .home-content h3 {
   font-size: 2rem;
-  font-weight: 700;
+  
 }
 
 .home-content .name {
@@ -104,7 +108,7 @@ section {
   font-size: 3rem;
   font-family: "Orbitron", sans-serif;
   line-height: 1.3;
-  font-weight: 700;
+  
 }
 .info {
   margin-top: 2rem;
