@@ -96,6 +96,7 @@ section {
   height: auto;     /* oranı korur */
   border-radius: 10%;
   object-fit: cover;
+  animation: floatImage 3s ease-in-out infinite;
 }
 
 .home-content h3 {
