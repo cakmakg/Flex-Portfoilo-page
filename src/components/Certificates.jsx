@@ -13,28 +13,28 @@ const certificates = [
     {
         title: "Full Stack Web Development",
         issuer: "Clarusway",
-        date: "2024",
+        date: "2025",
         pdf: "/certificates/CertificationFullStack.pdf",
         color: "#00d9ff"
     },
     {
         title: "Frontend Development",
         issuer: "Clarusway",
-        date: "2024",
+        date: "2025",
         pdf: "/certificates/CertificationFrontend.pdf",
         color: "#61dafb"
     },
     {
         title: "Backend Development",
         issuer: "Clarusway",
-        date: "2024",
+        date: "2025",
         pdf: "/certificates/CertificationBackend.pdf",
         color: "#339933"
     },
     {
         title: "React.js Certificate",
         issuer: "Clarusway",
-        date: "2024",
+        date: "2025",
         pdf: "/certificates/CertificationReact.pdf",
         color: "#a855f7"
     },
