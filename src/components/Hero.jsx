@@ -185,7 +185,7 @@ const Hero = () => {
                                     variant="outlined"
                                     size="large"
                                     startIcon={<DownloadIcon />}
-                                    href="#"
+                                    href="/Lebenslauf.pdf"
                                     sx={{
                                         borderColor: '#00d9ff',
                                         color: '#00d9ff',
