@@ -19,7 +19,7 @@ const Footer = () => {
         { icon: <LinkedInIcon />, url: "https://www.linkedin.com/in/gökhan-cakmak/", label: "LinkedIn" },
         { icon: <GitHubIcon />, url: "https://github.com/cakmakg", label: "GitHub" },
         { icon: <WhatsAppIcon />, url: "https://wa.me/64646545899", label: "WhatsApp" },
-        { icon: <EmailIcon />, url: "gokhan.camak@web.de", label: "Email" },
+        { icon: <EmailIcon />, url: "mailto:gokhan.cakmak@web.de", label: "Email" },
     ];
 
     return (

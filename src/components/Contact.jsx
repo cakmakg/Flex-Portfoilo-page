@@ -11,8 +11,8 @@ import { motion } from 'framer-motion';
 
 const Contact = () => {
     const contactInfo = [
-        { icon: <EmailIcon />, label: "Email", value: "contact@example.com", link: "mailto:contact@example.com" },
-        { icon: <LocationOnIcon />, label: "Location", value: "Deutschland", link: null },
+        { icon: <EmailIcon />, label: "Email", value: "gokhan.cakmak@web.de", link: "mailto:gokhan.cakmak@web.de" },
+        { icon: <LocationOnIcon />, label: "Location", value: "Bonn", link: null },
     ];
 
     const socialLinks = [
