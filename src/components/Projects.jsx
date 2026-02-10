@@ -10,7 +10,7 @@ const projects = [
     {
         title: "AI Chat Assistant",
         description: "RAG-basierter Chatbot für PDF-Dokumentenanalyse.",
-        image: "/projects1.jpg",
+        image: "/AI.png",
         link: "https://restructure-work.vercel.app/",
         github: "https://github.com/cakmakg/restructure-work",
         tags: ["RAG", "LangChain", "OpenAI"],
@@ -20,7 +20,7 @@ const projects = [
     {
         title: "WC Finder",
         description: "Backend service for managing personnel data.",
-        image: "/projects1.jpg",
+        image: "/wcfinder.png",
         link: "https://wc-finder-wheat.vercel.app/",
         github: "https://github.com/cakmakg/WCFinder",
         tags: ["Node.js", "Express"],
@@ -30,7 +30,7 @@ const projects = [
     {
         title: "TravelSync",
         description: "Task management with authentication.",
-        image: "/projects2.jpg",
+        image: "/travelsync.png",
         link: "https://travelsync-backend.vercel.app/login",
         github: "https://github.com/cakmakg/travelsync-backend",
         tags: ["React", "Node.js"],
@@ -50,7 +50,7 @@ const projects = [
     {
         title: "Travel Agency",
         description: "E-commerce cart functionality.",
-        image: "/projects1.jpg",
+        image: "/travelagenvy.png",
         link: "https://travel-agency-eight-gamma.vercel.app/",
         github: "https://github.com/cakmakg/TravelAgency",
         tags: ["React", "Context"],
@@ -60,7 +60,7 @@ const projects = [
     {
         title: "Event Platform",
         description: "Event management platform.",
-        image: "/projects3.jpg",
+        image: "/eventapp.png",
         link: "https://zusammenfun.onrender.com/",
         github: "https://github.com/cakmakg",
         tags: ["MERN Stack"],
