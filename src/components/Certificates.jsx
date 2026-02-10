@@ -14,45 +14,46 @@ const certificates = [
         title: "Full Stack Web Development",
         issuer: "Clarusway",
         date: "2024",
-        pdf: "/certificates/fullstack-certificate.pdf",
+        pdf: "/certificates/CertificationFullStack.pdf",
         color: "#00d9ff"
+    },
+    {
+        title: "Frontend Development",
+        issuer: "Clarusway",
+        date: "2024",
+        pdf: "/certificates/CertificationFrontend.pdf",
+        color: "#61dafb"
+    },
+    {
+        title: "Backend Development",
+        issuer: "Clarusway",
+        date: "2024",
+        pdf: "/certificates/CertificationBackend.pdf",
+        color: "#339933"
     },
     {
         title: "React.js Certificate",
         issuer: "Clarusway",
         date: "2024",
-        pdf: "/certificates/react-certificate.pdf",
-        color: "#61dafb"
+        pdf: "/certificates/CertificationReact.pdf",
+        color: "#a855f7"
     },
     {
-        title: "Node.js Certificate",
-        issuer: "Clarusway",
+        title: "Qualifizierung Modul 1",
+        issuer: "TQ",
         date: "2024",
-        pdf: "/certificates/nodejs-certificate.pdf",
-        color: "#339933"
+        pdf: "/certificates/TQ 1 Cakmak Zertifikat.pdf",
+        color: "#ff9800"
     },
     {
-        title: "JavaScript Certificate",
-        issuer: "Clarusway",
+        title: "Qualifizierung Modul 2",
+        issuer: "TQ",
         date: "2024",
-        pdf: "/certificates/javascript-certificate.pdf",
-        color: "#f7df1e"
-    },
-    {
-        title: "Python Certificate",
-        issuer: "Clarusway",
-        date: "2024",
-        pdf: "/certificates/python-certificate.pdf",
-        color: "#3776ab"
-    },
-    {
-        title: "Docker Certificate",
-        issuer: "Clarusway",
-        date: "2024",
-        pdf: "/certificates/docker-certificate.pdf",
-        color: "#2496ed"
+        pdf: "/certificates/Zertifikat Cakmak__Modul2.pdf",
+        color: "#f44336"
     },
 ];
+
 
 const Certificates = () => {
     return (

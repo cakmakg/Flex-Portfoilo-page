@@ -11,28 +11,28 @@ const projects = [
         title: "AI Chat Assistant",
         description: "RAG-basierter Chatbot für PDF-Dokumentenanalyse.",
         image: "/projects1.jpg",
-        link: "#",
-        github: "https://github.com/cakmakg",
+        link: "https://restructure-work.vercel.app/",
+        github: "https://github.com/cakmakg/restructure-work",
         tags: ["RAG", "LangChain", "OpenAI"],
         category: "ai",
         isAI: true
     },
     {
-        title: "Personnel API",
+        title: "WC Finder",
         description: "Backend service for managing personnel data.",
         image: "/projects1.jpg",
-        link: "https://two0-personnelapi.onrender.com",
-        github: "https://github.com/cakmakg",
+        link: "https://wc-finder-wheat.vercel.app/",
+        github: "https://github.com/cakmakg/WCFinder",
         tags: ["Node.js", "Express"],
         category: "backend",
         isAI: false
     },
     {
-        title: "Todo App",
+        title: "TravelSync",
         description: "Task management with authentication.",
         image: "/projects2.jpg",
-        link: "https://fs-todo-app-client-beta.vercel.app/",
-        github: "https://github.com/cakmakg",
+        link: "https://travelsync-backend.vercel.app/login",
+        github: "https://github.com/cakmakg/travelsync-backend",
         tags: ["React", "Node.js"],
         category: "fullstack",
         isAI: false
@@ -48,11 +48,11 @@ const projects = [
         isAI: false
     },
     {
-        title: "Shopping Cart",
+        title: "Travel Agency",
         description: "E-commerce cart functionality.",
         image: "/projects1.jpg",
-        link: "https://shopping-card-omega-five.vercel.app/",
-        github: "https://github.com/cakmakg",
+        link: "https://travel-agency-eight-gamma.vercel.app/",
+        github: "https://github.com/cakmakg/TravelAgency",
         tags: ["React", "Context"],
         category: "frontend",
         isAI: false

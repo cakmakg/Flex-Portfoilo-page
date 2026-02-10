@@ -18,8 +18,8 @@ const Footer = () => {
     const socialLinks = [
         { icon: <LinkedInIcon />, url: "https://www.linkedin.com/in/gökhan-cakmak/", label: "LinkedIn" },
         { icon: <GitHubIcon />, url: "https://github.com/cakmakg", label: "GitHub" },
-        { icon: <WhatsAppIcon />, url: "https://wa.me/491639734475", label: "WhatsApp" },
-        { icon: <EmailIcon />, url: "mailto:contact@example.com", label: "Email" },
+        { icon: <WhatsAppIcon />, url: "https://wa.me/64646545899", label: "WhatsApp" },
+        { icon: <EmailIcon />, url: "gokhan.camak@web.de", label: "Email" },
     ];
 
     return (
