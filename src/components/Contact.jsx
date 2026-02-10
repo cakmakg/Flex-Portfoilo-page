@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Container, Typography, Grid, TextField, Button, Paper, IconButton, Stack, Chip } from '@mui/material';
+import React, { useRef, useState } from 'react';
+import { Box, Container, Typography, Grid, TextField, Button, Paper, IconButton, Stack, Snackbar, Alert, CircularProgress } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -7,9 +7,37 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SendIcon from '@mui/icons-material/Send';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 
+// =====================================================
+// EmailJS Konfiguration:
+// 1. https://www.emailjs.com/ hesap oluşturun (ücretsiz)
+// 2. Email Service ekleyin (Gmail, Outlook vb.)
+// 3. Email Template oluşturun (Aşağıdaki değişkenler: from_name, from_email, message)
+// 4. Aşağıdaki değerleri kendi bilgilerinizle değiştirin:
+// =====================================================
+const EMAILJS_SERVICE_ID = 'service_xxxxxxx';   // EmailJS Service ID
+const EMAILJS_TEMPLATE_ID = 'template_xxxxxxx'; // EmailJS Template ID
+const EMAILJS_PUBLIC_KEY = 'xxxxxxxxxxxxxxx';    // EmailJS Public Key
+
+const inputStyles = {
+    '& .MuiOutlinedInput-root': {
+        color: 'white',
+        '& fieldset': { borderColor: 'rgba(255,255,255,0.2)' },
+        '&:hover fieldset': { borderColor: '#00d9ff' },
+        '&.Mui-focused fieldset': { borderColor: '#00d9ff' },
+    },
+    '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.5)' },
+    '& .MuiInputLabel-root.Mui-focused': { color: '#00d9ff' },
+};
+
 const Contact = () => {
+    const formRef = useRef(null);
+    const [loading, setLoading] = useState(false);
+    const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+
     const contactInfo = [
         { icon: <EmailIcon />, label: "Email", value: "gokhan.cakmak@web.de", link: "mailto:gokhan.cakmak@web.de" },
         { icon: <LocationOnIcon />, label: "Location", value: "Bonn", link: null },
@@ -20,6 +48,28 @@ const Contact = () => {
         { icon: <GitHubIcon />, url: "https://github.com/cakmakg", color: "#333" },
         { icon: <WhatsAppIcon />, url: "https://wa.me/491639734475", color: "#25d366" },
     ];
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        emailjs.sendForm(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID,
+            formRef.current,
+            EMAILJS_PUBLIC_KEY
+        )
+            .then(() => {
+                setSnackbar({ open: true, message: 'Nachricht erfolgreich gesendet! ✅', severity: 'success' });
+                formRef.current.reset();
+            })
+            .catch(() => {
+                setSnackbar({ open: true, message: 'Fehler beim Senden. Bitte versuchen Sie es erneut.', severity: 'error' });
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    };
 
     return (
         <Box id="contact" sx={{ py: 10, bgcolor: '#0f0f1a', position: 'relative', overflow: 'hidden' }}>
@@ -119,6 +169,7 @@ const Contact = () => {
                                             key={i}
                                             href={social.url}
                                             target="_blank"
+                                            aria-label={`Social link ${i}`}
                                             sx={{
                                                 color: 'rgba(255,255,255,0.6)',
                                                 border: '1px solid rgba(255,255,255,0.1)',
@@ -137,66 +188,53 @@ const Contact = () => {
 
                             {/* Contact Form */}
                             <Grid item xs={12} md={7}>
-                                <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                                <Box
+                                    component="form"
+                                    ref={formRef}
+                                    onSubmit={handleSubmit}
+                                    sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+                                >
                                     <TextField
                                         fullWidth
                                         label="Name"
+                                        name="from_name"
+                                        required
                                         variant="outlined"
-                                        sx={{
-                                            '& .MuiOutlinedInput-root': {
-                                                color: 'white',
-                                                '& fieldset': { borderColor: 'rgba(255,255,255,0.2)' },
-                                                '&:hover fieldset': { borderColor: '#00d9ff' },
-                                                '&.Mui-focused fieldset': { borderColor: '#00d9ff' },
-                                            },
-                                            '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.5)' },
-                                            '& .MuiInputLabel-root.Mui-focused': { color: '#00d9ff' },
-                                        }}
+                                        sx={inputStyles}
                                     />
                                     <TextField
                                         fullWidth
                                         label="Email"
+                                        name="from_email"
                                         type="email"
+                                        required
                                         variant="outlined"
-                                        sx={{
-                                            '& .MuiOutlinedInput-root': {
-                                                color: 'white',
-                                                '& fieldset': { borderColor: 'rgba(255,255,255,0.2)' },
-                                                '&:hover fieldset': { borderColor: '#00d9ff' },
-                                                '&.Mui-focused fieldset': { borderColor: '#00d9ff' },
-                                            },
-                                            '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.5)' },
-                                            '& .MuiInputLabel-root.Mui-focused': { color: '#00d9ff' },
-                                        }}
+                                        sx={inputStyles}
                                     />
                                     <TextField
                                         fullWidth
                                         label="Nachricht"
+                                        name="message"
                                         multiline
                                         rows={4}
+                                        required
                                         variant="outlined"
-                                        sx={{
-                                            '& .MuiOutlinedInput-root': {
-                                                color: 'white',
-                                                '& fieldset': { borderColor: 'rgba(255,255,255,0.2)' },
-                                                '&:hover fieldset': { borderColor: '#00d9ff' },
-                                                '&.Mui-focused fieldset': { borderColor: '#00d9ff' },
-                                            },
-                                            '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.5)' },
-                                            '& .MuiInputLabel-root.Mui-focused': { color: '#00d9ff' },
-                                        }}
+                                        sx={inputStyles}
                                     />
                                     <Button
+                                        type="submit"
                                         variant="contained"
                                         size="large"
-                                        endIcon={<SendIcon />}
+                                        disabled={loading}
+                                        endIcon={loading ? <CircularProgress size={20} color="inherit" /> : <SendIcon />}
                                         sx={{
                                             mt: 1,
                                             bgcolor: '#a855f7',
-                                            '&:hover': { bgcolor: '#9333ea' }
+                                            '&:hover': { bgcolor: '#9333ea' },
+                                            '&.Mui-disabled': { bgcolor: 'rgba(168, 85, 247, 0.5)', color: 'rgba(255,255,255,0.5)' }
                                         }}
                                     >
-                                        Nachricht senden
+                                        {loading ? 'Wird gesendet...' : 'Nachricht senden'}
                                     </Button>
                                 </Box>
                             </Grid>
@@ -204,6 +242,22 @@ const Contact = () => {
                     </Paper>
                 </motion.div>
             </Container>
+
+            {/* Success/Error Snackbar */}
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={5000}
+                onClose={() => setSnackbar({ ...snackbar, open: false })}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert
+                    onClose={() => setSnackbar({ ...snackbar, open: false })}
+                    severity={snackbar.severity}
+                    variant="filled"
+                >
+                    {snackbar.message}
+                </Alert>
+            </Snackbar>
         </Box>
     );
 };

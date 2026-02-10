@@ -19,27 +19,27 @@ const projects = [
     },
     {
         title: "WC Finder",
-        description: "Backend service for managing personnel data.",
+        description: "Öffentliche Toiletten in der Nähe finden.",
         image: "/wcfinder.png",
         link: "https://wc-finder-wheat.vercel.app/",
         github: "https://github.com/cakmakg/WCFinder",
-        tags: ["Node.js", "Express"],
-        category: "backend",
+        tags: ["React", "Maps API", "Node.js"],
+        category: "fullstack",
         isAI: false
     },
     {
         title: "TravelSync",
-        description: "Task management with authentication.",
+        description: "B2B-Plattform für Reisebüros und Hotels.",
         image: "/travelsync.png",
         link: "https://travelsync-backend.vercel.app/login",
         github: "https://github.com/cakmakg/travelsync-backend",
-        tags: ["React", "Node.js"],
+        tags: ["React", "Node.js", "MongoDB"],
         category: "fullstack",
         isAI: false
     },
     {
         title: "Stock App",
-        description: "Inventory tracking system.",
+        description: "Lagerbestandsverwaltung mit Dashboard.",
         image: "/projects3.jpg",
         link: "https://fs-stock-app-1.vercel.app/",
         github: "https://github.com/cakmakg",
@@ -49,21 +49,31 @@ const projects = [
     },
     {
         title: "Travel Agency",
-        description: "E-commerce cart functionality.",
+        description: "Reisebüro-Website mit Buchungsfunktion.",
         image: "/travelagenvy.png",
         link: "https://travel-agency-eight-gamma.vercel.app/",
         github: "https://github.com/cakmakg/TravelAgency",
-        tags: ["React", "Context"],
+        tags: ["React", "Tailwind"],
         category: "frontend",
         isAI: false
     },
     {
         title: "Event Platform",
-        description: "Event management platform.",
+        description: "Veranstaltungsplattform mit Nutzerregistrierung.",
         image: "/eventapp.png",
         link: "https://zusammenfun.onrender.com/",
         github: "https://github.com/cakmakg",
         tags: ["MERN Stack"],
+        category: "fullstack",
+        isAI: false
+    },
+    {
+        title: "The Pulse Global",
+        description: "OSINT platform.",
+        image: "/NEWOSINT.png",
+        link: "https://newosint.vercel.app/",
+        github: "https://github.com/cakmakg/NEWOSINT",
+        tags: ["AI"],
         category: "fullstack",
         isAI: false
     }
