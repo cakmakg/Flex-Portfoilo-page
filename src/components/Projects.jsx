@@ -76,6 +76,16 @@ const projects = [
         tags: ["AI"],
         category: "fullstack",
         isAI: false
+    },
+    {
+        title: "Shophub",
+        description: "Multi-Tenant SaaS E-Commerce-Plattform mit branchenspezifischen Blueprints.",
+        image: "/shophub.png",
+        link: "https://shop-app-ten-beige.vercel.app/",
+        github: "https://github.com/cakmakg/ShopApp",
+        tags: ["Next.js", "TypeScript", "Tailwind"],
+        category: "fullstack",
+        isAI: false
     }
 ];
 
