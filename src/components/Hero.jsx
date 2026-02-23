@@ -201,7 +201,7 @@ const Hero = () => {
                             sx={{
                                 fontFamily: 'Orbitron, sans-serif',
                                 fontWeight: 800,
-                                fontSize: { xs: '2rem', sm: '2.5rem', md: '4rem' },
+                                fontSize: { xs: '2.5rem', sm: '3.5rem', md: '5rem', lg: '6rem' },
                                 lineHeight: { xs: 1.2, md: 1.1 },
                                 mt: 0,
                                 mb: 1,
@@ -225,7 +225,7 @@ const Hero = () => {
                             sx={{
                                 fontFamily: 'Orbitron, sans-serif',
                                 fontWeight: 600,
-                                fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' },
+                                fontSize: { xs: '1.4rem', sm: '1.8rem', md: '2.5rem' },
                                 mb: 6,
                                 background: 'linear-gradient(135deg, #00d9ff 0%, #a855f7 50%, #00d9ff 100%)',
                                 backgroundSize: '200% auto',
@@ -265,7 +265,7 @@ const Hero = () => {
                         </motion.div>
 
                         {/* Floating Tags - Left */}
-                        <Box sx={{ position: 'absolute', left: { xs: -60, md: -180 }, top: '50%', transform: 'translateY(-50%)', display: { xs: 'none', sm: 'flex' }, flexDirection: 'column', gap: 3 }}>
+                        <Box sx={{ position: 'absolute', left: { xs: -40, md: -250, lg: -350 }, top: '50%', transform: 'translateY(-50%)', display: { xs: 'none', sm: 'flex' }, flexDirection: 'column', gap: 3 }}>
                             {leftTags.map((tag, i) => (
                                 <motion.div
                                     key={`l-${i}`}
@@ -277,12 +277,12 @@ const Hero = () => {
                                     }}
                                 >
                                     <Box sx={{
-                                        px: 2, py: 1,
+                                        px: 3, py: 1.5,
                                         bgcolor: 'rgba(0, 217, 255, 0.1)',
                                         border: '1px solid rgba(0, 217, 255, 0.3)',
                                         color: '#00d9ff',
-                                        borderRadius: 1,
-                                        fontSize: '0.9rem',
+                                        borderRadius: 2,
+                                        fontSize: '1.1rem',
                                         fontWeight: 600,
                                         boxShadow: '0 0 15px rgba(0, 217, 255, 0.2)',
                                         backdropFilter: 'blur(4px)'
@@ -294,7 +294,7 @@ const Hero = () => {
                         </Box>
 
                         {/* Floating Tags - Right */}
-                        <Box sx={{ position: 'absolute', right: { xs: -60, md: -180 }, top: '50%', transform: 'translateY(-50%)', display: { xs: 'none', sm: 'flex' }, flexDirection: 'column', gap: 3 }}>
+                        <Box sx={{ position: 'absolute', right: { xs: -40, md: -250, lg: -350 }, top: '50%', transform: 'translateY(-50%)', display: { xs: 'none', sm: 'flex' }, flexDirection: 'column', gap: 3 }}>
                             {rightTags.map((tag, i) => (
                                 <motion.div
                                     key={`r-${i}`}
@@ -306,12 +306,12 @@ const Hero = () => {
                                     }}
                                 >
                                     <Box sx={{
-                                        px: 2, py: 1,
+                                        px: 3, py: 1.5,
                                         bgcolor: 'rgba(168, 85, 247, 0.1)',
                                         border: '1px solid rgba(168, 85, 247, 0.3)',
                                         color: '#a855f7',
-                                        borderRadius: 1,
-                                        fontSize: '0.9rem',
+                                        borderRadius: 2,
+                                        fontSize: '1.1rem',
                                         fontWeight: 600,
                                         boxShadow: '0 0 15px rgba(168, 85, 247, 0.2)',
                                         backdropFilter: 'blur(4px)'
@@ -331,8 +331,8 @@ const Hero = () => {
                             <Box
                                 onClick={() => setShowRobot(prev => !prev)}
                                 sx={{
-                                    width: { xs: 240, md: 320 },
-                                    height: { xs: 240, md: 320 },
+                                    width: { xs: 240, md: 360, lg: 400 },
+                                    height: { xs: 240, md: 360, lg: 400 },
                                     position: 'relative',
                                     borderRadius: '50%',
                                     cursor: 'pointer',
@@ -405,10 +405,11 @@ const Hero = () => {
                     >
                         <Box
                             sx={{
-                                mt: 4, mb: 6,
-                                maxWidth: '800px', // max-w-3xl
+                                mt: 6, mb: 6,
+                                maxWidth: '1200px', // max-w-6xl for much wider feel
+                                width: '100%',
                                 mx: 'auto',
-                                p: { xs: 3, md: 4 },
+                                p: { xs: 3, md: 5 },
                                 bgcolor: 'rgba(31, 41, 55, 0.6)', // slate-800 with opacity for a lighter feel
                                 backdropFilter: 'blur(16px)',
                                 borderRadius: 4,
@@ -423,11 +424,11 @@ const Hero = () => {
                             <Box sx={{ position: 'absolute', top: 0, left: 0, width: 30, height: 30, borderTop: '2px solid #00d9ff', borderLeft: '2px solid #00d9ff' }} />
                             <Box sx={{ position: 'absolute', bottom: 0, right: 0, width: 30, height: 30, borderBottom: '2px solid #a855f7', borderRight: '2px solid #a855f7' }} />
 
-                            <Typography sx={{ fontFamily: 'monospace', color: '#00d9ff', fontSize: '0.85rem', mb: 2, display: 'flex', alignItems: 'center', gap: 1, justifyContent: 'center' }}>
-                                <TerminalIcon sx={{ fontSize: 16 }} /> SYSTEM SPEAKING...
+                            <Typography sx={{ fontFamily: 'monospace', color: '#00d9ff', fontSize: '1rem', mb: 3, display: 'flex', alignItems: 'center', gap: 1, justifyContent: 'center' }}>
+                                <TerminalIcon sx={{ fontSize: 20 }} /> SYSTEM SPEAKING...
                             </Typography>
 
-                            <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.8)', fontSize: { xs: '1rem', md: '1.2rem' }, lineHeight: 1.8, fontWeight: 300 }}>
+                            <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.8)', fontSize: { xs: '1.2rem', md: '1.6rem' }, lineHeight: 1.8, fontWeight: 300, textAlign: 'center' }}>
                                 <TypewriterText
                                     text="Ich entwickle intelligente Webanwendungen mit modernen Full-Stack Technologien und Generative AI. Spezialisiert auf RAG-Architekturen, AI-Assistenten und Cloud-native Lösungen."
                                     delay={1000}
