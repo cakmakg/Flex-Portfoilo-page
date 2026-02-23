@@ -1,155 +1,144 @@
 import React from 'react';
-import { Box, Container, Typography, Grid, Avatar, Chip, Stack } from '@mui/material';
+import { Box, Container, Typography, Chip, Stack } from '@mui/material';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CloudIcon from '@mui/icons-material/Cloud';
 import CodeIcon from '@mui/icons-material/Code';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
+import TerminalIcon from '@mui/icons-material/Terminal';
 import { motion } from 'framer-motion';
 
 const About = () => {
     const highlights = [
         { icon: <PsychologyIcon />, label: "AI Engineering", color: "#a855f7" },
-        { icon: <SmartToyIcon />, label: "RAG Systems", color: "#00d9ff" },
+        { icon: <AutoAwesomeIcon />, label: "RAG Systems", color: "#00d9ff" },
         { icon: <CloudIcon />, label: "AWS Cloud", color: "#ff9800" },
         { icon: <CodeIcon />, label: "Full-Stack", color: "#10b981" },
     ];
 
     return (
-        <Box id="about" sx={{ py: 10, bgcolor: '#1a1a2e' }}>
-            <Container maxWidth="lg">
-                <Grid container spacing={6} alignItems="center">
-                    {/* Image / AI Visual */}
-                    <Grid item xs={12} md={5}>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
+        <Box id="about" sx={{ py: 12, bgcolor: '#172033', position: 'relative', overflow: 'hidden' }}>
+            {/* Subtle Grid Pattern Background */}
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    opacity: 0.05,
+                    backgroundImage: `
+                        linear-gradient(rgba(0,217,255,0.4) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0,217,255,0.4) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '40px 40px',
+                    zIndex: 0
+                }}
+            />
+
+            <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1 }}>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', mb: 6 }}>
+                        <Chip
+                            icon={<TerminalIcon sx={{ fontSize: 16 }} />}
+                            label="01 — ÜBER MICH"
+                            sx={{
+                                mb: 3,
+                                bgcolor: 'rgba(0, 217, 255, 0.1)',
+                                color: '#00d9ff',
+                                fontSize: '0.85rem',
+                                fontWeight: 700,
+                                letterSpacing: 2,
+                                border: '1px solid rgba(0, 217, 255, 0.3)',
+                                '& .MuiChip-icon': { color: '#00d9ff' }
+                            }}
+                        />
+
+                        <Typography
+                            variant="h2"
+                            sx={{
+                                mb: 2,
+                                fontWeight: 800,
+                                fontSize: { xs: '2.5rem', md: '3.5rem' },
+                                color: 'white',
+                                fontFamily: 'Orbitron, sans-serif'
+                            }}
                         >
-                            <Box
-                                sx={{
-                                    position: 'relative',
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                }}
-                            >
-                                {/* Glowing Background */}
-                                <Box
+                            Architekt <br /> digitaler <Box component="span" sx={{ color: '#00d9ff' }}>Systeme</Box>
+                        </Typography>
+                    </Box>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                    <Box
+                        sx={{
+                            p: { xs: 3, md: 5 },
+                            bgcolor: 'rgba(31, 41, 55, 0.4)', // slate-800 translucent
+                            backdropFilter: 'blur(16px)',
+                            borderRadius: 4,
+                            border: '1px solid rgba(255, 255, 255, 0.05)',
+                            borderLeft: '4px solid #a855f7',
+                            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+                            position: 'relative'
+                        }}
+                    >
+                        {/* Decorative HUD Corner */}
+                        <Box sx={{ position: 'absolute', top: 0, right: 0, width: 40, height: 40, borderTop: '2px solid rgba(255,255,255,0.1)', borderRight: '2px solid rgba(255,255,255,0.1)', borderTopRightRadius: 16 }} />
+                        <Box sx={{ position: 'absolute', bottom: 0, left: 0, width: 40, height: 40, borderBottom: '2px solid rgba(168,85,247,0.3)', borderLeft: '2px solid rgba(168,85,247,0.3)', borderBottomLeftRadius: 16 }} />
+
+                        <Typography variant="body1" paragraph sx={{ fontSize: '1.15rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.8)' }}>
+                            Als Full-Stack Developer & AI Engineer verbinde ich moderne Webtechnologien mit fortschrittlichen KI-Architekturen, um nicht nur ästhetische Benutzeroberflächen zu gestalten, sondern komplexe, autonome Systeme im Hintergrund zu orchestrieren.
+                        </Typography>
+
+                        <Typography variant="body1" paragraph sx={{ fontSize: '1.15rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.8)' }}>
+                            Ich schreibe nicht nur Code – ich konzipiere skalierbare und intelligente Lösungen. Mein aktueller Fokus liegt auf der Entwicklung von <strong style={{ color: '#00d9ff', fontWeight: 600 }}>RAG-Pipelines</strong> (Retrieval-Augmented Generation) und der Integration von <strong style={{ color: '#a855f7', fontWeight: 600 }}>AI-Agents</strong>. Dabei baue ich keine einfachen Chatbots, sondern intelligente Assistenten, die über AWS Lambda eigenständig Aufgaben ausführen und sicher mit Unternehmensdaten interagieren.
+                        </Typography>
+
+                        <Typography variant="body1" sx={{ fontSize: '1.15rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.8)', mb: 5 }}>
+                            Um höchste Effizienz und Sicherheit zu gewährleisten, setze ich auf strategisches Model Routing zur Kosten- und Performanceoptimierung sowie auf strikte Guardrails, die Halluzinationen verhindern und verlässliche Ergebnisse garantieren. Mein Ziel ist es, die Brücke zwischen klassischem Software-Engineering und zukunftsweisenden Cloud- & KI-Technologien zu schlagen.
+                        </Typography>
+
+                        {/* Highlight Chips */}
+                        <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap justifyContent="center">
+                            {highlights.map((item, i) => (
+                                <Chip
+                                    key={i}
+                                    icon={item.icon}
+                                    label={item.label}
                                     sx={{
-                                        position: 'absolute',
-                                        width: 280,
-                                        height: 280,
-                                        borderRadius: '50%',
-                                        background: 'radial-gradient(circle, rgba(168,85,247,0.3) 0%, transparent 70%)',
-                                        filter: 'blur(40px)',
-                                    }}
-                                />
-
-                                {/* Profile Image */}
-                                <Avatar
-                                    src="/profile.jpg"
-                                    alt="Gökhan Cakmak"
-                                    sx={{
-                                        width: 250,
-                                        height: 250,
-                                        border: '3px solid',
-                                        borderColor: '#a855f7',
-                                        boxShadow: '0 0 40px rgba(168, 85, 247, 0.3)',
-                                    }}
-                                />
-
-                                {/* Floating AI Badge */}
-                                <Box
-                                    sx={{
-                                        position: 'absolute',
-                                        bottom: 10,
-                                        right: '20%',
-                                        bgcolor: '#0f0f1a',
-                                        border: '2px solid #00d9ff',
-                                        borderRadius: 3,
-                                        px: 2,
-                                        py: 1,
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: 1,
-                                    }}
-                                >
-                                    <AutoAwesomeIcon sx={{ color: '#00d9ff', fontSize: 20 }} />
-                                    <Typography variant="body2" sx={{ color: '#00d9ff', fontWeight: 600 }}>
-                                        AI Developer
-                                    </Typography>
-                                </Box>
-                            </Box>
-                        </motion.div>
-                    </Grid>
-
-                    {/* Content */}
-                    <Grid item xs={12} md={7}>
-                        <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            <Chip
-                                icon={<PsychologyIcon />}
-                                label="Über mich"
-                                sx={{
-                                    mb: 2,
-                                    bgcolor: 'rgba(168, 85, 247, 0.2)',
-                                    color: '#a855f7',
-                                    '& .MuiChip-icon': { color: '#a855f7' }
-                                }}
-                            />
-
-                            <Typography
-                                variant="h3"
-                                sx={{
-                                    mb: 3,
-                                    fontWeight: 700,
-                                    color: 'white'
-                                }}
-                            >
-                                Full-Stack Developer &
-                                <Box component="span" sx={{ color: '#00d9ff' }}> AI Engineer</Box>
-                            </Typography>
-
-                            <Typography variant="body1" paragraph sx={{ fontSize: '1.05rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.7)' }}>
-                                Ich bin ein Softwareentwickler, der mit modernen Webtechnologien ästhetische und funktionale
-                                Benutzeroberflächen gestaltet und gleichzeitig komplexe Systeme im Hintergrund steuert.
-                            </Typography>
-
-                            <Typography variant="body1" paragraph sx={{ fontSize: '1.05rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.7)' }}>
-                                Ich schreibe nicht nur Code – ich entwickle skalierbare und intelligente Lösungen.
-                                In letzter Zeit arbeite ich intensiv mit der <strong style={{ color: '#00d9ff' }}>RAG-Architektur</strong> und
-                                entwickle <strong style={{ color: '#a855f7' }}>KI-gestützte Assistenten</strong>, mit denen Nutzer mit
-                                ihren eigenen Daten interagieren können.
-                            </Typography>
-
-                            <Typography variant="body1" sx={{ fontSize: '1.05rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.7)', mb: 4 }}>
-                                Ich entwickle mich kontinuierlich im Bereich Cloud-Technologien (AWS) und AI Engineering weiter.
-                            </Typography>
-
-                            {/* Highlight Chips */}
-                            <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-                                {highlights.map((item, i) => (
-                                    <Chip
-                                        key={i}
-                                        icon={item.icon}
-                                        label={item.label}
-                                        sx={{
+                                        px: 1,
+                                        py: 2.5,
+                                        fontSize: '0.9rem',
+                                        fontWeight: 600,
+                                        bgcolor: 'rgba(31, 41, 55, 0.8)',
+                                        color: 'white',
+                                        border: `1px solid ${item.color}40`,
+                                        backdropFilter: 'blur(4px)',
+                                        transition: 'all 0.3s ease',
+                                        '& .MuiChip-icon': { color: item.color },
+                                        '&:hover': {
                                             bgcolor: `${item.color}20`,
-                                            color: item.color,
-                                            border: `1px solid ${item.color}40`,
-                                            '& .MuiChip-icon': { color: item.color }
-                                        }}
-                                    />
-                                ))}
-                            </Stack>
-                        </motion.div>
-                    </Grid>
-                </Grid>
+                                            borderColor: item.color,
+                                            boxShadow: `0 0 15px ${item.color}40`,
+                                            transform: 'translateY(-2px)'
+                                        }
+                                    }}
+                                />
+                            ))}
+                        </Stack>
+                    </Box>
+                </motion.div>
+
             </Container>
         </Box>
     );

@@ -2,25 +2,22 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
-    mode: 'light',
+    mode: 'dark',
     primary: {
-      main: '#2e7d32', // Soft Green/Teal (Nature/Calm) or maybe Blue? Let's stick to a clean blue for professional look or the user's preferred style.
-      // User asked for "ferah, acik renkler". A soft blue/teal is good.
-      // Existing site had red. Let's try a professional blue.
-      main: '#0288d1', 
+      main: '#0288d1',
       light: '#5eb8ff',
       dark: '#005b9f',
     },
     secondary: {
-      main: '#f50057', // Accent
+      main: '#a855f7',
     },
     background: {
-      default: '#f8f9fa', // Very light grey, easier on eyes than pure white
-      paper: '#ffffff',
+      default: '#0f0f1a',
+      paper: '#1a1a2e',
     },
     text: {
-      primary: '#2c3e50',
-      secondary: '#546e7a',
+      primary: '#ffffff',
+      secondary: 'rgba(255,255,255,0.7)',
     },
   },
   typography: {
@@ -42,7 +39,7 @@ const theme = createTheme({
       fontSize: '1.75rem',
     },
     button: {
-      textTransform: 'none', // Modern look
+      textTransform: 'none',
       fontWeight: 600,
     },
   },
@@ -53,23 +50,11 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '50px', // Rounded buttons
+          borderRadius: '50px',
           padding: '10px 24px',
         },
       },
     },
-    MuiCard: {
-        styleOverrides: {
-            root: {
-                boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
-                transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-                '&:hover': {
-                    transform: 'translateY(-5px)',
-                    boxShadow: '0 12px 30px rgba(0,0,0,0.1)',
-                }
-            }
-        }
-    }
   },
 });
 

@@ -1,36 +1,32 @@
 import React, { useRef, useState } from 'react';
-import { Box, Container, Typography, Grid, TextField, Button, Paper, IconButton, Stack, Snackbar, Alert, CircularProgress } from '@mui/material';
+import { Box, Container, Typography, Grid, TextField, Button, Paper, IconButton, Stack, Snackbar, Alert, CircularProgress, Chip } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SendIcon from '@mui/icons-material/Send';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import TerminalIcon from '@mui/icons-material/Terminal';
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 
-// =====================================================
-// EmailJS Konfiguration:
-// 1. https://www.emailjs.com/ hesap oluşturun (ücretsiz)
-// 2. Email Service ekleyin (Gmail, Outlook vb.)
-// 3. Email Template oluşturun (Aşağıdaki değişkenler: from_name, from_email, message)
-// 4. Aşağıdaki değerleri kendi bilgilerinizle değiştirin:
-// =====================================================
-const EMAILJS_SERVICE_ID = 'service_xxxxxxx';   // EmailJS Service ID
-const EMAILJS_TEMPLATE_ID = 'template_xxxxxxx'; // EmailJS Template ID
-const EMAILJS_PUBLIC_KEY = 'xxxxxxxxxxxxxxx';    // EmailJS Public Key
+const EMAILJS_SERVICE_ID = 'service_xxxxxxx';
+const EMAILJS_TEMPLATE_ID = 'template_xxxxxxx';
+const EMAILJS_PUBLIC_KEY = 'xxxxxxxxxxxxxxx';
 
 const inputStyles = {
     '& .MuiOutlinedInput-root': {
         color: 'white',
-        '& fieldset': { borderColor: 'rgba(255,255,255,0.2)' },
-        '&:hover fieldset': { borderColor: '#00d9ff' },
-        '&.Mui-focused fieldset': { borderColor: '#00d9ff' },
+        bgcolor: 'rgba(15, 15, 26, 0.4)',
+        borderRadius: 2,
+        transition: 'all 0.3s ease',
+        '& fieldset': { borderColor: 'rgba(255,255,255,0.1)' },
+        '&:hover fieldset': { borderColor: 'rgba(0, 217, 255, 0.5)' },
+        '&.Mui-focused fieldset': { borderColor: '#00d9ff', borderWidth: '2px' },
+        '&.Mui-focused': { boxShadow: '0 0 15px rgba(0, 217, 255, 0.1)' }
     },
     '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.5)' },
-    '& .MuiInputLabel-root.Mui-focused': { color: '#00d9ff' },
+    '& .MuiInputLabel-root.Mui-focused': { color: '#00d9ff', fontWeight: 600 },
 };
 
 const Contact = () => {
@@ -60,11 +56,11 @@ const Contact = () => {
             EMAILJS_PUBLIC_KEY
         )
             .then(() => {
-                setSnackbar({ open: true, message: 'Nachricht erfolgreich gesendet! ✅', severity: 'success' });
+                setSnackbar({ open: true, message: 'System message transmitted successfully. ✅', severity: 'success' });
                 formRef.current.reset();
             })
             .catch(() => {
-                setSnackbar({ open: true, message: 'Fehler beim Senden. Bitte versuchen Sie es erneut.', severity: 'error' });
+                setSnackbar({ open: true, message: 'Transmission failed. Ensure network connection.', severity: 'error' });
             })
             .finally(() => {
                 setLoading(false);
@@ -72,7 +68,7 @@ const Contact = () => {
     };
 
     return (
-        <Box id="contact" sx={{ py: 10, bgcolor: '#0f0f1a', position: 'relative', overflow: 'hidden' }}>
+        <Box id="contact" sx={{ py: 12, bgcolor: '#111827', position: 'relative', overflow: 'hidden' }}>
             {/* Background Pattern */}
             <Box
                 sx={{
@@ -81,12 +77,11 @@ const Contact = () => {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    opacity: 0.05,
+                    opacity: 0.1,
                     backgroundImage: `
-                        linear-gradient(rgba(0,217,255,0.3) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(0,217,255,0.3) 1px, transparent 1px)
+                        radial-gradient(circle at 10% 90%, rgba(0,217,255,0.3) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 10%, rgba(168,85,247,0.3) 0%, transparent 40%)
                     `,
-                    backgroundSize: '50px 50px',
                 }}
             />
 
@@ -97,34 +92,64 @@ const Contact = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 2 }}>
-                        <SmartToyIcon sx={{ color: '#a855f7', fontSize: 32 }} />
-                        <Typography variant="h2" align="center" sx={{ fontWeight: 700, color: 'white' }}>
-                            Kontakt
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 8 }}>
+                        <Chip
+                            icon={<TerminalIcon sx={{ fontSize: 16 }} />}
+                            label="05 — KONTAKT"
+                            sx={{
+                                mb: 2,
+                                bgcolor: 'rgba(0, 217, 255, 0.1)',
+                                color: '#00d9ff',
+                                fontSize: '0.85rem',
+                                fontWeight: 700,
+                                letterSpacing: 2,
+                                border: '1px solid rgba(0, 217, 255, 0.3)',
+                                '& .MuiChip-icon': { color: '#00d9ff' }
+                            }}
+                        />
+                        <Typography
+                            variant="h2"
+                            align="center"
+                            sx={{
+                                fontWeight: 800,
+                                color: 'white',
+                                fontFamily: 'Orbitron, sans-serif',
+                                fontSize: { xs: '2.5rem', md: '3.5rem' },
+                                mb: 2
+                            }}
+                        >
+                            Init <Box component="span" sx={{ color: '#00d9ff' }}>Connection</Box>
+                        </Typography>
+                        <Typography variant="body1" align="center" sx={{ color: 'rgba(255,255,255,0.6)', maxWidth: 600 }}>
+                            Bereit für das nächste Level? Hinterlassen Sie eine Nachricht.
                         </Typography>
                     </Box>
-                    <Typography variant="body1" align="center" sx={{ mb: 6, color: 'rgba(255,255,255,0.6)' }}>
-                        Lassen Sie uns über Ihr nächstes AI-Projekt sprechen
-                    </Typography>
 
                     <Paper
                         elevation={0}
                         sx={{
-                            p: 4,
+                            p: { xs: 3, md: 5 },
                             borderRadius: 4,
-                            bgcolor: 'rgba(255,255,255,0.03)',
-                            border: '1px solid rgba(255,255,255,0.1)',
-                            backdropFilter: 'blur(10px)',
+                            bgcolor: 'rgba(31, 41, 55, 0.5)',
+                            border: '1px solid rgba(255,255,255,0.05)',
+                            borderTop: '2px solid rgba(0, 217, 255, 0.5)',
+                            backdropFilter: 'blur(16px)',
+                            boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                            position: 'relative'
                         }}
                     >
-                        <Grid container spacing={4}>
+                        {/* Corner HUD markers */}
+                        <Box sx={{ position: 'absolute', top: 0, right: 0, width: 30, height: 30, borderTop: '2px solid rgba(0,217,255,0.3)', borderRight: '2px solid rgba(0,217,255,0.3)' }} />
+                        <Box sx={{ position: 'absolute', bottom: 0, left: 0, width: 30, height: 30, borderBottom: '2px solid rgba(168,85,247,0.3)', borderLeft: '2px solid rgba(168,85,247,0.3)' }} />
+
+                        <Grid container spacing={6}>
                             {/* Contact Info */}
                             <Grid item xs={12} md={5}>
-                                <Typography variant="h5" sx={{ mb: 3, fontWeight: 600, color: 'white' }}>
-                                    Kontaktinformationen
+                                <Typography variant="h5" sx={{ mb: 4, fontWeight: 700, color: 'white', fontFamily: 'Orbitron, sans-serif' }}>
+                                    System_Info
                                 </Typography>
 
-                                <Stack spacing={2} sx={{ mb: 4 }}>
+                                <Stack spacing={3} sx={{ mb: 5 }}>
                                     {contactInfo.map((info, i) => (
                                         <Box
                                             key={i}
@@ -135,24 +160,26 @@ const Contact = () => {
                                                 alignItems: 'center',
                                                 gap: 2,
                                                 textDecoration: 'none',
-                                                color: 'rgba(255,255,255,0.7)',
-                                                '&:hover': info.link ? { color: '#00d9ff' } : {}
+                                                color: 'rgba(255,255,255,0.8)',
+                                                transition: 'all 0.2s',
+                                                '&:hover': info.link ? { color: '#00d9ff', transform: 'translateX(4px)' } : {}
                                             }}
                                         >
                                             <Box sx={{
-                                                p: 1,
+                                                p: 1.5,
                                                 borderRadius: 2,
                                                 bgcolor: 'rgba(0, 217, 255, 0.1)',
                                                 color: '#00d9ff',
-                                                display: 'flex'
+                                                display: 'flex',
+                                                border: '1px solid rgba(0,217,255,0.2)'
                                             }}>
                                                 {info.icon}
                                             </Box>
                                             <Box>
-                                                <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.5)' }}>
-                                                    {info.label}
+                                                <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.4)', fontWeight: 600, letterSpacing: 1, display: 'block' }}>
+                                                    {info.label.toUpperCase()}
                                                 </Typography>
-                                                <Typography variant="body2">
+                                                <Typography variant="body1" sx={{ fontWeight: 500 }}>
                                                     {info.value}
                                                 </Typography>
                                             </Box>
@@ -160,10 +187,10 @@ const Contact = () => {
                                     ))}
                                 </Stack>
 
-                                <Typography variant="body2" sx={{ mb: 2, color: 'rgba(255,255,255,0.5)' }}>
-                                    Folgen Sie mir
+                                <Typography variant="caption" sx={{ mb: 2, color: 'rgba(255,255,255,0.4)', fontWeight: 600, letterSpacing: 1, display: 'block' }}>
+                                    NETZWERK_LINKS
                                 </Typography>
-                                <Stack direction="row" spacing={1}>
+                                <Stack direction="row" spacing={1.5}>
                                     {socialLinks.map((social, i) => (
                                         <IconButton
                                             key={i}
@@ -171,12 +198,16 @@ const Contact = () => {
                                             target="_blank"
                                             aria-label={`Social link ${i}`}
                                             sx={{
-                                                color: 'rgba(255,255,255,0.6)',
+                                                color: 'white',
+                                                bgcolor: 'rgba(255,255,255,0.05)',
                                                 border: '1px solid rgba(255,255,255,0.1)',
+                                                transition: 'all 0.3s',
                                                 '&:hover': {
-                                                    color: '#00d9ff',
-                                                    borderColor: '#00d9ff',
-                                                    bgcolor: 'rgba(0, 217, 255, 0.1)'
+                                                    bgcolor: social.color,
+                                                    color: 'white',
+                                                    borderColor: social.color,
+                                                    boxShadow: `0 0 15px ${social.color}60`,
+                                                    transform: 'translateY(-3px)'
                                                 }
                                             }}
                                         >
@@ -192,11 +223,11 @@ const Contact = () => {
                                     component="form"
                                     ref={formRef}
                                     onSubmit={handleSubmit}
-                                    sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+                                    sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}
                                 >
                                     <TextField
                                         fullWidth
-                                        label="Name"
+                                        label="Name / Alias"
                                         name="from_name"
                                         required
                                         variant="outlined"
@@ -204,7 +235,7 @@ const Contact = () => {
                                     />
                                     <TextField
                                         fullWidth
-                                        label="Email"
+                                        label="Email Address"
                                         name="from_email"
                                         type="email"
                                         required
@@ -213,10 +244,10 @@ const Contact = () => {
                                     />
                                     <TextField
                                         fullWidth
-                                        label="Nachricht"
+                                        label="Secure Message"
                                         name="message"
                                         multiline
-                                        rows={4}
+                                        rows={5}
                                         required
                                         variant="outlined"
                                         sx={inputStyles}
@@ -226,15 +257,27 @@ const Contact = () => {
                                         variant="contained"
                                         size="large"
                                         disabled={loading}
-                                        endIcon={loading ? <CircularProgress size={20} color="inherit" /> : <SendIcon />}
+                                        endIcon={loading ? <CircularProgress size={20} color="inherit" /> : <SendIcon sx={{ fontSize: 18 }} />}
                                         sx={{
-                                            mt: 1,
-                                            bgcolor: '#a855f7',
-                                            '&:hover': { bgcolor: '#9333ea' },
-                                            '&.Mui-disabled': { bgcolor: 'rgba(168, 85, 247, 0.5)', color: 'rgba(255,255,255,0.5)' }
+                                            mt: 2,
+                                            py: 1.5,
+                                            bgcolor: '#00d9ff',
+                                            color: '#05050a',
+                                            fontWeight: 800,
+                                            letterSpacing: 1,
+                                            borderRadius: 2,
+                                            transition: 'all 0.3s ease',
+                                            '&:hover': {
+                                                bgcolor: '#00b8d9',
+                                                boxShadow: '0 0 20px rgba(0, 217, 255, 0.5)'
+                                            },
+                                            '&.Mui-disabled': {
+                                                bgcolor: 'rgba(0, 217, 255, 0.3)',
+                                                color: 'rgba(255,255,255,0.5)'
+                                            }
                                         }}
                                     >
-                                        {loading ? 'Wird gesendet...' : 'Nachricht senden'}
+                                        {loading ? 'TRANSMITTING...' : 'TRANSMIT MESSAGE'}
                                     </Button>
                                 </Box>
                             </Grid>
@@ -254,6 +297,12 @@ const Contact = () => {
                     onClose={() => setSnackbar({ ...snackbar, open: false })}
                     severity={snackbar.severity}
                     variant="filled"
+                    sx={{
+                        bgcolor: snackbar.severity === 'success' ? 'rgba(16, 185, 129, 0.9)' : 'rgba(239, 68, 68, 0.9)',
+                        color: 'white',
+                        fontWeight: 600,
+                        backdropFilter: 'blur(10px)'
+                    }}
                 >
                     {snackbar.message}
                 </Alert>

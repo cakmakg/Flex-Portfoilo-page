@@ -1,169 +1,160 @@
 import React from 'react';
-import { Box, Container, Typography, Grid, Card, CardContent, CardActions, Button, Avatar, Chip } from '@mui/material';
+import { Box, Container, Typography, Card, CardContent, CardActions, Button, Avatar, Chip, IconButton } from '@mui/material';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import SchoolIcon from '@mui/icons-material/School';
 import VerifiedIcon from '@mui/icons-material/Verified';
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import TerminalIcon from '@mui/icons-material/Terminal';
 import { motion } from 'framer-motion';
 
-// =====================================================
-// SERTİFİKALARINIZI BURAYA EKLEYİN
-// =====================================================
 const certificates = [
-    {
-        title: "Full Stack Web Development",
-        issuer: "Clarusway",
-        date: "2025",
-        pdf: "/certificates/CertificationFullStack.pdf",
-        color: "#00d9ff"
-    },
-    {
-        title: "Frontend Development",
-        issuer: "Clarusway",
-        date: "2025",
-        pdf: "/certificates/CertificationFrontend.pdf",
-        color: "#61dafb"
-    },
-    {
-        title: "Backend Development",
-        issuer: "Clarusway",
-        date: "2025",
-        pdf: "/certificates/CertificationBackend.pdf",
-        color: "#339933"
-    },
-    {
-        title: "React.js Certificate",
-        issuer: "Clarusway",
-        date: "2025",
-        pdf: "/certificates/CertificationReact.pdf",
-        color: "#a855f7"
-    },
-    {
-        title: "Qualifizierung Modul 1",
-        issuer: "TQ",
-        date: "2024",
-        pdf: "/certificates/TQ 1 Cakmak Zertifikat.pdf",
-        color: "#ff9800"
-    },
-    {
-        title: "Qualifizierung Modul 2",
-        issuer: "TQ",
-        date: "2024",
-        pdf: "/certificates/Zertifikat Cakmak__Modul2.pdf",
-        color: "#f44336"
-    },
+    { title: "Full Stack", issuer: "Clarusway", date: "2025", pdf: "/certificates/CertificationFullStack.pdf", color: "#00d9ff" },
+    { title: "Frontend", issuer: "Clarusway", date: "2025", pdf: "/certificates/CertificationFrontend.pdf", color: "#61dafb" },
+    { title: "Backend", issuer: "Clarusway", date: "2025", pdf: "/certificates/CertificationBackend.pdf", color: "#10b981" },
+    { title: "React.js", issuer: "Clarusway", date: "2025", pdf: "/certificates/CertificationReact.pdf", color: "#a855f7" },
+    { title: "Modul 1", issuer: "TQ", date: "2024", pdf: "/certificates/TQ 1 Cakmak Zertifikat.pdf", color: "#ff9800" },
+    { title: "Modul 2", issuer: "TQ", date: "2024", pdf: "/certificates/Zertifikat Cakmak__Modul2.pdf", color: "#f44336" },
 ];
-
 
 const Certificates = () => {
     return (
-        <Box id="certificates" sx={{ py: 8, bgcolor: '#16213e', position: 'relative', overflow: 'hidden' }}>
-            {/* Background Pattern */}
+        <Box id="certificates" sx={{ py: 12, bgcolor: '#111827', position: 'relative', overflow: 'hidden' }}>
             <Box
                 sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    opacity: 0.03,
-                    backgroundImage: `
-                        radial-gradient(circle at 20% 50%, #a855f7 0%, transparent 25%),
-                        radial-gradient(circle at 80% 50%, #00d9ff 0%, transparent 25%)
-                    `,
+                    position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, opacity: 0.03,
+                    backgroundImage: `linear-gradient(rgba(168,85,247,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.3) 1px, transparent 1px)`,
+                    backgroundSize: '40px 40px', zIndex: 0
                 }}
             />
 
-            <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 2 }}>
-                    <AutoAwesomeIcon sx={{ color: '#a855f7', fontSize: 32 }} />
-                    <Typography variant="h2" align="center" sx={{ fontWeight: 700, color: 'white' }}>
-                        Zertifikate
+            <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1, px: { xs: 2, md: 4 } }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 6 }}>
+                    <Chip
+                        icon={<TerminalIcon sx={{ fontSize: 16 }} />}
+                        label="03 — ZERTIFIKATE"
+                        sx={{
+                            mb: 2, bgcolor: 'rgba(168, 85, 247, 0.1)', color: '#a855f7',
+                            fontSize: '0.85rem', fontWeight: 700, letterSpacing: 2,
+                            border: '1px solid rgba(168, 85, 247, 0.3)', '& .MuiChip-icon': { color: '#a855f7' }
+                        }}
+                    />
+                    <Typography variant="h2" align="center" sx={{ fontWeight: 800, color: 'white', fontFamily: 'Orbitron, sans-serif', fontSize: { xs: '2rem', md: '3rem' } }}>
+                        Verified <Box component="span" sx={{ color: '#a855f7' }}>Skills</Box>
                     </Typography>
                 </Box>
-                <Typography variant="body1" align="center" sx={{ mb: 5, maxWidth: 600, mx: 'auto', color: 'rgba(255,255,255,0.6)' }}>
-                    Professionelle Zertifizierungen und abgeschlossene Kurse
-                </Typography>
 
-                <Grid container spacing={3} justifyContent="center">
+                {/* Horizontal Scroll / Flex Container */}
+                <Box
+                    sx={{
+                        display: 'flex',
+                        gap: 2.5,
+                        overflowX: 'auto',
+                        pb: 4,
+                        px: 1,
+                        // Styling the scrollbar
+                        '&::-webkit-scrollbar': { height: '6px' },
+                        '&::-webkit-scrollbar-track': { background: 'rgba(255,255,255,0.05)', borderRadius: '10px' },
+                        '&::-webkit-scrollbar-thumb': { background: 'rgba(168, 85, 247, 0.4)', borderRadius: '10px' },
+                        '&::-webkit-scrollbar-thumb:hover': { background: 'rgba(168, 85, 247, 0.8)' }
+                    }}
+                >
                     {certificates.map((cert, index) => (
-                        <Grid item xs={12} sm={6} md={4} key={index}>
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.4, delay: index * 0.1 }}
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.3, delay: index * 0.1 }}
+                            style={{ flex: '0 0 auto', width: '200px' }} // Fixed compact width
+                        >
+                            <Card
+                                sx={{
+                                    height: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    borderRadius: 3,
+                                    bgcolor: 'rgba(31, 41, 55, 0.4)',
+                                    border: '1px solid rgba(255,255,255,0.05)',
+                                    borderTop: `2px solid ${cert.color}80`,
+                                    backdropFilter: 'blur(10px)',
+                                    transition: 'all 0.3s',
+                                    position: 'relative',
+                                    overflow: 'hidden',
+                                    '&:hover': {
+                                        borderColor: `${cert.color}50`,
+                                        boxShadow: `0 8px 20px rgba(0,0,0,0.5), 0 0 15px ${cert.color}30`,
+                                        transform: 'translateY(-4px)'
+                                    }
+                                }}
                             >
-                                <Card
-                                    sx={{
-                                        height: '100%',
-                                        borderRadius: 3,
-                                        bgcolor: 'rgba(255,255,255,0.03)',
-                                        border: '1px solid rgba(255,255,255,0.1)',
-                                        backdropFilter: 'blur(10px)',
-                                        transition: 'all 0.3s ease',
-                                        '&:hover': {
-                                            borderColor: cert.color,
-                                            boxShadow: `0 0 30px ${cert.color}30`,
-                                            transform: 'translateY(-4px)',
-                                        }
-                                    }}
-                                >
-                                    <CardContent sx={{ textAlign: 'center', pt: 4 }}>
-                                        <Avatar
-                                            sx={{
-                                                width: 64,
-                                                height: 64,
-                                                bgcolor: `${cert.color}20`,
-                                                color: cert.color,
-                                                mx: 'auto',
-                                                mb: 2
-                                            }}
-                                        >
-                                            <SchoolIcon sx={{ fontSize: 32 }} />
-                                        </Avatar>
+                                <Box sx={{ position: 'absolute', top: -20, right: -20, width: 60, height: 60, background: `radial-gradient(circle, ${cert.color}40 0%, transparent 70%)`, filter: 'blur(10px)' }} />
 
-                                        <Typography variant="h6" fontWeight={600} sx={{ mb: 1, color: 'white' }}>
-                                            {cert.title}
+                                <CardContent sx={{ textAlign: 'center', p: 2, pb: 1, flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                    <Avatar
+                                        sx={{
+                                            width: 42,
+                                            height: 42,
+                                            bgcolor: 'rgba(15, 15, 26, 0.8)',
+                                            color: cert.color,
+                                            mb: 1.5,
+                                            border: `1px solid ${cert.color}40`,
+                                        }}
+                                    >
+                                        <SchoolIcon sx={{ fontSize: 22 }} />
+                                    </Avatar>
+
+                                    <Typography variant="subtitle1" fontWeight={800} sx={{ color: 'white', fontFamily: 'Orbitron, sans-serif', fontSize: '0.85rem', lineHeight: 1.2, mb: 1 }}>
+                                        {cert.title}
+                                    </Typography>
+
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 1.5 }}>
+                                        <VerifiedIcon sx={{ fontSize: 14, color: cert.color }} />
+                                        <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.7)', fontWeight: 600, fontSize: '0.7rem' }}>
+                                            {cert.issuer}
                                         </Typography>
+                                    </Box>
 
-                                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.5, mb: 1 }}>
-                                            <VerifiedIcon sx={{ fontSize: 16, color: cert.color }} />
-                                            <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.6)' }}>
-                                                {cert.issuer}
-                                            </Typography>
-                                        </Box>
+                                    <Chip
+                                        label={cert.date}
+                                        size="small"
+                                        sx={{
+                                            bgcolor: 'rgba(255,255,255,0.05)',
+                                            color: 'rgba(255,255,255,0.5)',
+                                            fontSize: '0.6rem',
+                                            fontWeight: 700,
+                                            height: 18,
+                                            mt: 'auto'
+                                        }}
+                                    />
+                                </CardContent>
 
-                                        <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.4)' }}>
-                                            {cert.date}
-                                        </Typography>
-                                    </CardContent>
-
-                                    <CardActions sx={{ justifyContent: 'center', pb: 3 }}>
-                                        <Button
-                                            variant="outlined"
-                                            size="small"
-                                            startIcon={<PictureAsPdfIcon />}
-                                            href={cert.pdf}
-                                            target="_blank"
-                                            sx={{
+                                <CardActions sx={{ justifyContent: 'center', p: 2, pt: 0 }}>
+                                    <Button
+                                        variant="outlined"
+                                        size="small"
+                                        href={cert.pdf}
+                                        target="_blank"
+                                        sx={{
+                                            minWidth: 'auto',
+                                            width: '100%',
+                                            borderColor: `${cert.color}30`,
+                                            color: cert.color,
+                                            fontSize: '0.65rem',
+                                            fontWeight: 800,
+                                            py: 0.5,
+                                            borderRadius: 1.5,
+                                            '&:hover': {
+                                                bgcolor: `${cert.color}15`,
                                                 borderColor: cert.color,
-                                                color: cert.color,
-                                                '&:hover': {
-                                                    bgcolor: cert.color,
-                                                    color: 'white',
-                                                    borderColor: cert.color,
-                                                }
-                                            }}
-                                        >
-                                            View PDF
-                                        </Button>
-                                    </CardActions>
-                                </Card>
-                            </motion.div>
-                        </Grid>
+                                            }
+                                        }}
+                                    >
+                                        VIEW PDF
+                                    </Button>
+                                </CardActions>
+                            </Card>
+                        </motion.div>
                     ))}
-                </Grid>
+                </Box>
             </Container>
         </Box>
     );
