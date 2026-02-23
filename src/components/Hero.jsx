@@ -201,7 +201,7 @@ const Hero = () => {
                             sx={{
                                 fontFamily: 'Orbitron, sans-serif',
                                 fontWeight: 800,
-                                fontSize: { xs: '2.5rem', sm: '3.5rem', md: '5rem', lg: '6rem' },
+                                fontSize: { xs: '2.2rem', sm: '3rem', md: '4rem', lg: '4.5rem' },
                                 lineHeight: { xs: 1.2, md: 1.1 },
                                 mt: 0,
                                 mb: 1,
