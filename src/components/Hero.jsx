@@ -466,7 +466,7 @@ const Hero = () => {
 
                             <Button
                                 variant="outlined"
-                                href="/Lebenslauf.pdf"
+                                href="/Gökhan Cakmak.docx (3).pdf"
                                 startIcon={<DownloadIcon />}
                                 sx={{
                                     borderColor: '#a855f7', color: '#a855f7', fontWeight: 600,

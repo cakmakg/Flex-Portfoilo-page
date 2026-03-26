@@ -97,15 +97,15 @@ const About = () => {
                         <Box sx={{ position: 'absolute', bottom: 0, left: 0, width: 40, height: 40, borderBottom: '2px solid rgba(168,85,247,0.3)', borderLeft: '2px solid rgba(168,85,247,0.3)', borderBottomLeftRadius: 16 }} />
 
                         <Typography variant="body1" paragraph sx={{ fontSize: '1.15rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.8)' }}>
-                            Als Full-Stack Developer & AI Engineer verbinde ich moderne Webtechnologien mit fortschrittlichen KI-Architekturen, um nicht nur ästhetische Benutzeroberflächen zu gestalten, sondern komplexe, autonome Systeme im Hintergrund zu orchestrieren.
+                            Als Full-Stack Developer und AI Engineer schlage ich die Brücke zwischen modernem Webdesign und hochkomplexer KI-Architektur im Backend. Für mich geht es nicht nur darum, Code zu schreiben, sondern skalierbare und intelligente Ökosysteme zu konzipieren.
                         </Typography>
 
                         <Typography variant="body1" paragraph sx={{ fontSize: '1.15rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.8)' }}>
-                            Ich schreibe nicht nur Code – ich konzipiere skalierbare und intelligente Lösungen. Mein aktueller Fokus liegt auf der Entwicklung von <strong style={{ color: '#00d9ff', fontWeight: 600 }}>RAG-Pipelines</strong> (Retrieval-Augmented Generation) und der Integration von <strong style={{ color: '#a855f7', fontWeight: 600 }}>AI-Agents</strong>. Dabei baue ich keine einfachen Chatbots, sondern intelligente Assistenten, die über AWS Lambda eigenständig Aufgaben ausführen und sicher mit Unternehmensdaten interagieren.
+                            Mein aktueller Fokus liegt auf der Entwicklung von <strong style={{ color: '#00d9ff', fontWeight: 600 }}>RAG-Pipelines</strong> und der Orchestrierung von autonomen <strong style={{ color: '#a855f7', fontWeight: 600 }}>Multi-Agenten-Systemen</strong>. Ich baue keine simplen Chatbots, sondern digitale Assistenten, die komplexe Workflows verstehen, sicher mit Unternehmensdaten interagieren und über Cloud-Dienste wie AWS Lambda eigenständig Aufgaben ausführen.
                         </Typography>
 
                         <Typography variant="body1" sx={{ fontSize: '1.15rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.8)', mb: 5 }}>
-                            Um höchste Effizienz und Sicherheit zu gewährleisten, setze ich auf strategisches Model Routing zur Kosten- und Performanceoptimierung sowie auf strikte Guardrails, die Halluzinationen verhindern und verlässliche Ergebnisse garantieren. Mein Ziel ist es, die Brücke zwischen klassischem Software-Engineering und zukunftsweisenden Cloud- & KI-Technologien zu schlagen.
+                            Weil in der produktiven Nutzung Verlässlichkeit das Wichtigste ist, setze ich auf strikte Guardrails, die Halluzinationen verhindern, und strategisches Model Routing, das Leistung und Kosten perfekt ausbalanciert. Mein Anspruch ist es, Technologien nicht nur als Selbstzweck zu nutzen, sondern als pragmatische Werkzeuge, die Unternehmen sicherer, effizienter und zukunftsfähig machen.
                         </Typography>
 
                         {/* Highlight Chips */}
