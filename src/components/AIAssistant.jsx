@@ -6,15 +6,15 @@ import GraphicEqIcon from '@mui/icons-material/GraphicEq';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Special tailored German script for 100% WOW effect!
-const voiceScript = `Herzlich willkommen auf meinem Portfolio. Ich bin Gökhan Cakmak, ein passionierter Full-Stack und AI Developer. 
-verbinde ich fundierte Webentwicklungs-Expertise (React, Node.js, TypeScript) mit dem Design und der Implementierung moderner, skalierbarer KI-Architekturen. 
-Mein Fokus liegt auf der Entwicklung von Generative AI-Lösungen und LLM-gestützten Workflows.
-Anstatt KI nur als Endanwender zu nutzen, konzipiere und integriere ich komplexe RAG-Pipelines, intelligente Model-Routing-Strategien und autonome AI-Agents 
-(z. B. in Verbindung mit AWS Lambda) direkt in produktive Unternehmenssysteme. Dabei orchestriere ich führende Modelle (wie OpenAI, Anthropic)
- und baue maßgeschneiderte, hybride KI-Architekturen auf. Um höchste Zuverlässigkeit und Unternehmenssicherheit zu gewährleisten, 
- implementiere ich strikte Guardrails, die Halluzinationen eliminieren und einen sicheren, präzisen Zugriff auf spezifische Daten garantieren.
-Als lösungsorientierter Teamplayer schlage ich die Brücke zwischen klassischem DevOps/Software-Engineering und 
-innovativer KI-Integration, um komplexe Herausforderungen in smarte, zukunftssichere Produkte zu verwandeln`;
+const voiceScript = `Herzlich willkommen auf meinem Portfolio. Ich bin Gökhan Cakmak – Full-Stack Developer und AI Engineer.
+
+Ich verbinde klassisches Software-Engineering mit modernsten KI-Architekturen. Das bedeutet: Ich entwickle nicht nur saubere Webanwendungen mit React, Node.js und TypeScript, sondern konzipiere im Hintergrund intelligente Systeme, die echte Arbeit abnehmen.
+
+Anstatt KI nur als Chatbot zu nutzen, baue ich autonome Multi-Agenten-Systeme und maßgeschneiderte RAG-Pipelines. Ich integriere Sprachmodelle von Anthropic oder OpenAI direkt in produktive Unternehmensabläufe – zum Beispiel über skalierbare AWS-Infrastrukturen.
+
+Dabei steht für mich eines immer im Vordergrund: absolute Verlässlichkeit. Durch intelligentes Model-Routing halte ich die Performance hoch und die Kosten im Griff. Mit strikten Guardrails sorge ich dafür, dass die KI sicher arbeitet, präzise auf Unternehmensdaten zugreift und keine Halluzinationen produziert.
+
+Kurz gesagt: Ich verwandle komplexe technische Herausforderungen in smarte, sichere und wirtschaftlich sinnvolle Produkte. Schau dich gerne um und entdecke meine aktuellen Projekte!`;
 
 const CustomAIAssistant = () => {
     const [isPlaying, setIsPlaying] = useState(false);
