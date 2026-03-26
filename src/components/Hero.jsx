@@ -430,7 +430,7 @@ const Hero = () => {
 
                             <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.8)', fontSize: { xs: '1.2rem', md: '1.6rem' }, lineHeight: 1.8, fontWeight: 300, textAlign: 'center' }}>
                                 <TypewriterText
-                                    text="Ich entwickle intelligente Webanwendungen mit modernen Full-Stack Technologien und Generative AI. Spezialisiert auf RAG-Architekturen, AI-Assistenten und Cloud-native Lösungen."
+                                    text="Ich verbinde modernes Full-Stack-Engineering mit fortschrittlicher Generativer KI. Spezialisiert auf autonome Multi-Agenten-Systeme, RAG-Architekturen und sichere Cloud-Lösungen, die echten Mehrwert schaffen.."
                                     delay={1000}
                                 />
                                 <span style={{ animation: 'blink 1s infinite' }}>&nbsp;█</span>
