@@ -7,7 +7,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import DownloadIcon from '@mui/icons-material/Download';
 import TerminalIcon from '@mui/icons-material/Terminal';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
-import { accents, surfaces, gradients, alpha } from '../theme/tokens';
+import { accents, surfaces, gradients, matrix, alpha } from '../theme/tokens';
 
 const MATRIX_CHARS =
     '01アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロゴゾドボポヴッン'.split('');
@@ -25,23 +25,39 @@ const MatrixBackground = () => {
 
         let width = (canvas.width = window.innerWidth);
         let height = (canvas.height = window.innerHeight);
-        let columns = Math.floor(width / 20);
+        const CELL = 22; // Spaltenbreite und Zeilenhöhe des Rasters
+        let columns = Math.floor(width / CELL);
         let drops = Array.from({ length: columns }, () => 1);
         let rafId;
         let last = 0;
-        const STEP = 55; // ms başına bir kare
+        const STEP = 48; // ms başına bir kare
 
         const draw = () => {
-            ctx.fillStyle = 'rgba(11, 15, 25, 0.06)';
+            // Halbtransparente Schicht über dem Vorbild erzeugt die Schweife.
+            ctx.fillStyle = matrix.fade;
             ctx.fillRect(0, 0, width, height);
-            ctx.font = '15px monospace';
+            ctx.font = '17px "Victor Mono", ui-monospace, monospace';
+            ctx.textBaseline = 'top';
+
             for (let i = 0; i < drops.length; i++) {
                 const text = MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)];
-                ctx.fillStyle = Math.random() > 0.95 ? '#fff' : accents.cyan;
-                ctx.fillText(text, i * 20, drops[i] * 20);
-                if (drops[i] * 20 > height && Math.random() > 0.975) drops[i] = 0;
+                const isHead = Math.random() > 0.86;
+
+                if (isHead) {
+                    // Heller Kopf mit Glow — macht den Regen deutlich sichtbar.
+                    ctx.shadowColor = accents.cyan;
+                    ctx.shadowBlur = 14;
+                    ctx.fillStyle = matrix.head;
+                } else {
+                    ctx.shadowBlur = 0;
+                    ctx.fillStyle = matrix.trail;
+                }
+
+                ctx.fillText(text, i * CELL, drops[i] * CELL);
+                if (drops[i] * CELL > height && Math.random() > 0.975) drops[i] = 0;
                 drops[i]++;
             }
+            ctx.shadowBlur = 0;
         };
 
         const loop = (t) => {
@@ -54,12 +70,12 @@ const MatrixBackground = () => {
         const handleResize = () => {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
-            columns = Math.floor(width / 20);
+            columns = Math.floor(width / CELL);
             drops = Array.from({ length: columns }, () => 1);
         };
 
         if (reduce) {
-            ctx.fillStyle = surfaces.s2;
+            ctx.fillStyle = surfaces.hero;
             ctx.fillRect(0, 0, width, height);
             draw();
         } else {
@@ -77,7 +93,7 @@ const MatrixBackground = () => {
         <canvas
             ref={canvasRef}
             aria-hidden
-            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.22, zIndex: 0 }}
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.85, zIndex: 0 }}
         />
     );
 };
@@ -132,7 +148,25 @@ const FloatingTag = ({ label, color, side, index }) => (
         transition={{ delay: 1 + index * 0.2 }}
         style={{ animation: `heroFloat ${3 + index}s ease-in-out infinite alternate${side === 'right' ? '-reverse' : ''}` }}
     >
-        <Box sx={{ px: 2.5, py: 1.25, bgcolor: alpha(color, 0.1), border: `1px solid ${alpha(color, 0.3)}`, color, borderRadius: 2, fontSize: '0.92rem', fontWeight: 600, boxShadow: `0 0 15px ${alpha(color, 0.15)}`, backdropFilter: 'blur(4px)', whiteSpace: 'nowrap' }}>
+        {/* Dunkles Glaspanel statt nur Accent-Tint: hebt sich klar vom hellen
+            Matrix-Regen dahinter ab (Blur + Schlagschatten trennen die Ebenen). */}
+        <Box
+            sx={{
+                px: 2.5,
+                py: 1.25,
+                bgcolor: alpha(surfaces.base, 0.62),
+                border: `1px solid ${alpha(color, 0.55)}`,
+                color,
+                borderRadius: 2,
+                fontSize: '0.92rem',
+                fontWeight: 600,
+                letterSpacing: 0.3,
+                textShadow: `0 0 12px ${alpha(color, 0.45)}`,
+                boxShadow: `0 0 18px ${alpha(color, 0.22)}, 0 10px 24px rgba(0,0,0,0.45)`,
+                backdropFilter: 'blur(10px)',
+                whiteSpace: 'nowrap',
+            }}
+        >
             {label}
         </Box>
     </motion.div>
@@ -160,27 +194,37 @@ const Hero = () => {
                 justifyContent: 'center',
                 position: 'relative',
                 overflow: 'hidden',
-                backgroundColor: surfaces.s2,
+                backgroundColor: surfaces.hero,
                 pt: { xs: 16, md: 20 },
                 pb: 8,
             }}
         >
             <MatrixBackground />
 
-            {/* Vignette */}
-            <Box aria-hidden sx={{ position: 'absolute', inset: 0, background: `radial-gradient(circle at center, transparent 0%, ${surfaces.s2} 80%)`, zIndex: 1 }} />
-
-            {/* Scanlines (hafifletildi) */}
+            {/* Vignette: Mitte bleibt frei, nur die Ränder werden abgedunkelt —
+                sonst überdeckt sie den Matrix-Regen. */}
             <Box
                 aria-hidden
                 sx={{
                     position: 'absolute',
                     inset: 0,
-                    background: 'linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.08) 50%)',
+                    background: `radial-gradient(ellipse at center, transparent 0%, transparent 55%, ${alpha(surfaces.base, 0.5)} 100%)`,
+                    zIndex: 1,
+                    pointerEvents: 'none',
+                }}
+            />
+
+            {/* Scanlines (dezent) */}
+            <Box
+                aria-hidden
+                sx={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.06) 50%)',
                     backgroundSize: '100% 4px',
                     zIndex: 2,
                     pointerEvents: 'none',
-                    opacity: 0.18,
+                    opacity: 0.1,
                 }}
             />
 
@@ -203,7 +247,7 @@ const Hero = () => {
                                 icon={<WorkOutlineIcon sx={{ fontSize: 14 }} />}
                                 label="OPEN TO WORK"
                                 size="small"
-                                sx={{ bgcolor: alpha(accents.cyan, 0.15), color: accents.cyan, border: `1px solid ${accents.cyan}`, fontWeight: 700, letterSpacing: 1, boxShadow: `0 0 15px ${alpha(accents.cyan, 0.4)}`, '& .MuiChip-icon': { color: accents.cyan } }}
+                                sx={{ bgcolor: alpha(surfaces.base, 0.7), backdropFilter: 'blur(8px)', color: accents.cyan, border: `1px solid ${accents.cyan}`, fontWeight: 700, letterSpacing: 1, boxShadow: `0 0 18px ${alpha(accents.cyan, 0.45)}, 0 6px 16px rgba(0,0,0,0.4)`, '& .MuiChip-icon': { color: accents.cyan } }}
                             />
                         </motion.div>
 
@@ -260,12 +304,12 @@ const Hero = () => {
                                 maxWidth: 1100,
                                 mx: 'auto',
                                 p: { xs: 3, md: 5 },
-                                bgcolor: surfaces.card,
-                                backdropFilter: 'blur(16px)',
+                                bgcolor: alpha(surfaces.base, 0.6),
+                                backdropFilter: 'blur(18px)',
                                 borderRadius: 4,
-                                border: '1px solid rgba(255,255,255,0.08)',
-                                borderTop: `1px solid ${alpha(accents.cyan, 0.3)}`,
-                                boxShadow: '0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)',
+                                border: '1px solid rgba(255,255,255,0.10)',
+                                borderTop: `2px solid ${alpha(accents.cyan, 0.45)}`,
+                                boxShadow: '0 24px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07)',
                                 position: 'relative',
                                 overflow: 'hidden',
                             }}

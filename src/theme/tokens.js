@@ -16,8 +16,20 @@ export const surfaces = {
   s1: '#0f0f1a',
   s2: '#111827',
   s3: '#172033',
+  // Hero bilinçli olarak s2'den açık (yağmur görünsün) ama cam panellerin
+  // üzerinde ayrışabilmesi için fazla açılmıyor.
+  hero: '#141c2f',
   card: 'rgba(31, 41, 55, 0.4)',
   cardHover: 'rgba(31, 41, 55, 0.7)',
+};
+
+// Matrix yağmuru paleti: parlak beyazımsı baş + açık cyan kuyruk.
+// `fade`, her karede üzerine basılan yarı saydam katman — hero yüzeyiyle aynı
+// tonda olmalı ki izler arka plana temiz karışsın.
+export const matrix = {
+  head: '#eafdff',
+  trail: '#6ee7ff',
+  fade: 'rgba(20, 28, 47, 0.10)',
 };
 
 export const borders = {
