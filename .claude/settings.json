@@ -5,7 +5,11 @@
       "Bash(python -c \"import PyPDF2; print\\('PyPDF2 OK'\\)\")",
       "Bash(python -c \"import fitz; print\\('pymupdf OK'\\)\")",
       "Bash(pdftotext -layout \"public/cv-gokhan-cakmak.pdf\" -)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(curl -s -o /dev/null -w \"5174 -> HTTP %{http_code}\\\\n\" http://localhost:5174/)",
+      "Bash(curl -s -o /dev/null -w \"5173 -> HTTP %{http_code} \\(eski instance\\)\\\\n\" http://localhost:5173/)",
+      "Bash(curl -s -o /dev/null -w \"dev 5174 -> HTTP %{http_code}\\\\n\" http://localhost:5174/)"
     ]
   }
 }
