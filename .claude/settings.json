@@ -4,7 +4,8 @@
       "Bash(python -c \"import pypdf; print\\('pypdf OK', pypdf.__version__\\)\")",
       "Bash(python -c \"import PyPDF2; print\\('PyPDF2 OK'\\)\")",
       "Bash(python -c \"import fitz; print\\('pymupdf OK'\\)\")",
-      "Bash(pdftotext -layout \"public/cv-gokhan-cakmak.pdf\" -)"
+      "Bash(pdftotext -layout \"public/cv-gokhan-cakmak.pdf\" -)",
+      "Bash(git commit *)"
     ]
   }
 }

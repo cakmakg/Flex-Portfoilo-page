@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider, CssBaseline, Box, Container } from '@mui/material';
+import { ThemeProvider, CssBaseline, Box } from '@mui/material';
 import theme from './theme/theme';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -20,9 +20,9 @@ function App() {
         <Box component="main" sx={{ flexGrow: 1 }}>
           <Hero />
           <About />
+          <Skills />
           <Projects />
           <Certificates />
-          <Skills />
           <Contact />
         </Box>
         <CustomAIAssistant />

@@ -1,147 +1,86 @@
 import React from 'react';
-import { Box, Container, Typography, Chip, Stack } from '@mui/material';
+import { Box, Typography, Chip, Stack, Divider } from '@mui/material';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CloudIcon from '@mui/icons-material/Cloud';
-import CodeIcon from '@mui/icons-material/Code';
-import TerminalIcon from '@mui/icons-material/Terminal';
-import { motion } from 'framer-motion';
+import LayersIcon from '@mui/icons-material/Layers';
+import TranslateIcon from '@mui/icons-material/Translate';
+import { SectionShell } from './ui/SectionShell';
+import { SectionHeading } from './ui/SectionHeading';
+import { GlassCard } from './ui/GlassCard';
+import { Reveal } from './ui/Reveal';
+import { accents, alpha } from '../theme/tokens';
 
-const About = () => {
-    const highlights = [
-        { icon: <PsychologyIcon />, label: "AI Engineering", color: "#a855f7" },
-        { icon: <AutoAwesomeIcon />, label: "RAG Systems", color: "#00d9ff" },
-        { icon: <CloudIcon />, label: "AWS Cloud", color: "#ff9800" },
-        { icon: <CodeIcon />, label: "Full-Stack", color: "#10b981" },
-    ];
+const highlights = [
+    { icon: <PsychologyIcon />, label: 'LangGraph Multi-Agent', color: accents.purple },
+    { icon: <AutoAwesomeIcon />, label: 'RAG & Vector Search', color: accents.cyan },
+    { icon: <LayersIcon />, label: 'Multi-Tenant SaaS', color: accents.warn },
+    { icon: <CloudIcon />, label: 'AWS & MLOps', color: accents.success },
+];
 
-    return (
-        <Box id="about" sx={{ py: 12, bgcolor: '#172033', position: 'relative', overflow: 'hidden' }}>
-            {/* Subtle Grid Pattern Background */}
-            <Box
-                sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    opacity: 0.05,
-                    backgroundImage: `
-                        linear-gradient(rgba(0,217,255,0.4) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(0,217,255,0.4) 1px, transparent 1px)
-                    `,
-                    backgroundSize: '40px 40px',
-                    zIndex: 0
-                }}
-            />
+const About = () => (
+    <SectionShell id="about" surface="s3" bg="grid" maxWidth="md">
+        <SectionHeading
+            index="01"
+            overline="ÜBER MICH"
+            title={<>Architekt digitaler <Box component="span" sx={{ color: accents.cyan }}>Systeme</Box></>}
+        />
 
-            <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1 }}>
+        <Reveal delay={0.15}>
+            <GlassCard accent={accents.purple} corners={['tr', 'bl']} interactive={false} sx={{ p: { xs: 3, md: 5 } }}>
+                <Typography variant="body1" paragraph sx={{ color: 'text.secondary' }}>
+                    Ich baue Full-Stack-Anwendungen mit <Box component="strong" sx={{ color: accents.cyan, fontWeight: 600 }}>React, Node.js und TypeScript</Box> und entwerfe darauf aufbauend KI-Systeme, die eigenständig arbeiten. Der Schwerpunkt liegt auf Multi-Agent-Architekturen, ereignisgesteuerten LLM-Workflows und Multi-Tenant-SaaS-Plattformen für Geschäftsprozesse.
+                </Typography>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', mb: 6 }}>
+                <Typography variant="body1" paragraph sx={{ color: 'text.secondary' }}>
+                    KI nutze ich dabei nicht nur als Anwender. Ich baue deterministische State Machines mit <Box component="strong" sx={{ color: accents.purple, fontWeight: 600 }}>LangGraph</Box>, verteile Aufgaben je nach Anforderung auf Claude, Gemini oder OpenAI und verbinde die Agenten über n8n und Webhooks mit Gmail, Slack und Social-Media-Kanälen.
+                </Typography>
+
+                <Typography variant="body1" paragraph sx={{ color: 'text.secondary' }}>
+                    Damit die Ergebnisse verlässlich bleiben, arbeite ich mit RAG über MongoDB Atlas Vector Search, mit Critic-Agents für die automatische Qualitätsprüfung und mit Human-in-the-Loop-Freigaben an kritischen Stellen. Kostenkontrolle gehört dazu: Der Token-Verbrauch wird pro Mandant erfasst und über Stripe abgerechnet.
+                </Typography>
+
+                <Typography variant="body1" sx={{ color: 'text.secondary', mb: 4 }}>
+                    Praktisch komme ich aus mehreren Richtungen: Aktuell betreue ich bei <Box component="strong" sx={{ color: 'white', fontWeight: 600 }}>Reisegesucht.com</Box> in Bonn Web-Content und Social Media, davor 1st-Level-IT-Support bei der GIS GmbH und Frontend-Entwicklung einer Shopping-Plattform mit React und TypeScript bei Vidinli Software. Von 2020 bis 2023 habe ich ein eigenes Catering-Unternehmen gegründet und geführt — Kundenkontakt, Finanzen und Verantwortung von Anfang bis Ende. Den Weg in die IT bin ich über zwei Umschulungen gegangen: Full Stack Web Developer bei Clarusway und Fachinformatiker für Systemintegration bei der FAW.
+                </Typography>
+
+                <Divider sx={{ borderColor: 'rgba(255,255,255,0.06)', mb: 3 }} />
+
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, mb: 4, flexWrap: 'wrap' }}>
+                    <TranslateIcon sx={{ fontSize: 18, color: accents.cyan }} />
+                    <Typography sx={{ fontFamily: 'Victor Mono, monospace', fontSize: '0.8rem', letterSpacing: 1, color: 'rgba(255,255,255,0.6)', textAlign: 'center' }}>
+                        Deutsch (C1) · Englisch (B1) · Spanisch · Türkisch (Muttersprache)
+                    </Typography>
+                </Box>
+
+                <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap justifyContent="center">
+                    {highlights.map((item) => (
                         <Chip
-                            icon={<TerminalIcon sx={{ fontSize: 16 }} />}
-                            label="01 — ÜBER MICH"
+                            key={item.label}
+                            icon={item.icon}
+                            label={item.label}
                             sx={{
-                                mb: 3,
-                                bgcolor: 'rgba(0, 217, 255, 0.1)',
-                                color: '#00d9ff',
-                                fontSize: '0.85rem',
-                                fontWeight: 700,
-                                letterSpacing: 2,
-                                border: '1px solid rgba(0, 217, 255, 0.3)',
-                                '& .MuiChip-icon': { color: '#00d9ff' }
+                                px: 1,
+                                py: 2.5,
+                                fontWeight: 600,
+                                bgcolor: alpha('#1f2937', 0.8),
+                                color: 'white',
+                                border: `1px solid ${alpha(item.color, 0.25)}`,
+                                transition: 'all 0.3s ease',
+                                '& .MuiChip-icon': { color: item.color },
+                                '&:hover': {
+                                    bgcolor: alpha(item.color, 0.12),
+                                    borderColor: item.color,
+                                    boxShadow: `0 0 15px ${alpha(item.color, 0.25)}`,
+                                    transform: 'translateY(-2px)',
+                                },
                             }}
                         />
-
-                        <Typography
-                            variant="h2"
-                            sx={{
-                                mb: 2,
-                                fontWeight: 800,
-                                fontSize: { xs: '2.5rem', md: '3.5rem' },
-                                color: 'white',
-                                fontFamily: 'Orbitron, sans-serif'
-                            }}
-                        >
-                            Architekt <br /> digitaler <Box component="span" sx={{ color: '#00d9ff' }}>Systeme</Box>
-                        </Typography>
-                    </Box>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                    <Box
-                        sx={{
-                            p: { xs: 3, md: 5 },
-                            bgcolor: 'rgba(31, 41, 55, 0.4)', // slate-800 translucent
-                            backdropFilter: 'blur(16px)',
-                            borderRadius: 4,
-                            border: '1px solid rgba(255, 255, 255, 0.05)',
-                            borderLeft: '4px solid #a855f7',
-                            boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
-                            position: 'relative'
-                        }}
-                    >
-                        {/* Decorative HUD Corner */}
-                        <Box sx={{ position: 'absolute', top: 0, right: 0, width: 40, height: 40, borderTop: '2px solid rgba(255,255,255,0.1)', borderRight: '2px solid rgba(255,255,255,0.1)', borderTopRightRadius: 16 }} />
-                        <Box sx={{ position: 'absolute', bottom: 0, left: 0, width: 40, height: 40, borderBottom: '2px solid rgba(168,85,247,0.3)', borderLeft: '2px solid rgba(168,85,247,0.3)', borderBottomLeftRadius: 16 }} />
-
-                        <Typography variant="body1" paragraph sx={{ fontSize: '1.15rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.8)' }}>
-                            Als Full-Stack Developer und AI Engineer schlage ich die Brücke zwischen modernem Webdesign und hochkomplexer KI-Architektur im Backend. Für mich geht es nicht nur darum, Code zu schreiben, sondern skalierbare und intelligente Ökosysteme zu konzipieren.
-                        </Typography>
-
-                        <Typography variant="body1" paragraph sx={{ fontSize: '1.15rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.8)' }}>
-                            Mein aktueller Fokus liegt auf der Entwicklung von <strong style={{ color: '#00d9ff', fontWeight: 600 }}>RAG-Pipelines</strong> und der Orchestrierung von autonomen <strong style={{ color: '#a855f7', fontWeight: 600 }}>Multi-Agenten-Systemen</strong>. Ich baue keine simplen Chatbots, sondern digitale Assistenten, die komplexe Workflows verstehen, sicher mit Unternehmensdaten interagieren und über Cloud-Dienste wie AWS Lambda eigenständig Aufgaben ausführen.
-                        </Typography>
-
-                        <Typography variant="body1" sx={{ fontSize: '1.15rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.8)', mb: 5 }}>
-                            Weil in der produktiven Nutzung Verlässlichkeit das Wichtigste ist, setze ich auf strikte Guardrails, die Halluzinationen verhindern, und strategisches Model Routing, das Leistung und Kosten perfekt ausbalanciert. Mein Anspruch ist es, Technologien nicht nur als Selbstzweck zu nutzen, sondern als pragmatische Werkzeuge, die Unternehmen sicherer, effizienter und zukunftsfähig machen.
-                        </Typography>
-
-                        {/* Highlight Chips */}
-                        <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap justifyContent="center">
-                            {highlights.map((item, i) => (
-                                <Chip
-                                    key={i}
-                                    icon={item.icon}
-                                    label={item.label}
-                                    sx={{
-                                        px: 1,
-                                        py: 2.5,
-                                        fontSize: '0.9rem',
-                                        fontWeight: 600,
-                                        bgcolor: 'rgba(31, 41, 55, 0.8)',
-                                        color: 'white',
-                                        border: `1px solid ${item.color}40`,
-                                        backdropFilter: 'blur(4px)',
-                                        transition: 'all 0.3s ease',
-                                        '& .MuiChip-icon': { color: item.color },
-                                        '&:hover': {
-                                            bgcolor: `${item.color}20`,
-                                            borderColor: item.color,
-                                            boxShadow: `0 0 15px ${item.color}40`,
-                                            transform: 'translateY(-2px)'
-                                        }
-                                    }}
-                                />
-                            ))}
-                        </Stack>
-                    </Box>
-                </motion.div>
-
-            </Container>
-        </Box>
-    );
-};
+                    ))}
+                </Stack>
+            </GlassCard>
+        </Reveal>
+    </SectionShell>
+);
 
 export default About;

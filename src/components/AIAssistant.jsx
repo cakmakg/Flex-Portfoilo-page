@@ -6,15 +6,22 @@ import GraphicEqIcon from '@mui/icons-material/GraphicEq';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Special tailored German script for 100% WOW effect!
-const voiceScript = `Herzlich willkommen auf meinem Portfolio. Ich bin Gökhan Cakmak – Full-Stack Developer und AI Engineer.
+const voiceScript = `Herzlich willkommen auf meinem Portfolio. Ich bin Gökhan Cakmak – Full-Stack Developer und AI Systems Builder.
 
-Ich verbinde klassisches Software-Engineering mit modernsten KI-Architekturen. Das bedeutet: Ich entwickle nicht nur saubere Webanwendungen mit React, Node.js und TypeScript, sondern konzipiere im Hintergrund intelligente Systeme, die echte Arbeit abnehmen.
+Ich baue Full-Stack-Anwendungen mit React, Node.js und TypeScript und entwerfe darauf aufbauend KI-Systeme, die eigenständig arbeiten. Mein Schwerpunkt liegt auf Multi-Agent-Architekturen, ereignisgesteuerten LLM-Workflows und Multi-Tenant-SaaS-Plattformen für Geschäftsprozesse.
 
-Anstatt KI nur als Chatbot zu nutzen, baue ich autonome Multi-Agenten-Systeme und maßgeschneiderte RAG-Pipelines. Ich integriere Sprachmodelle von Anthropic oder OpenAI direkt in produktive Unternehmensabläufe – zum Beispiel über skalierbare AWS-Infrastrukturen.
+KI nutze ich dabei nicht nur als Anwender. Ich baue deterministische State Machines mit LangGraph, verteile Aufgaben je nach Anforderung auf Claude, Gemini oder OpenAI und verbinde die Agenten über n8n und Webhooks mit Gmail, Slack und Social-Media-Kanälen.
 
-Dabei steht für mich eines immer im Vordergrund: absolute Verlässlichkeit. Durch intelligentes Model-Routing halte ich die Performance hoch und die Kosten im Griff. Mit strikten Guardrails sorge ich dafür, dass die KI sicher arbeitet, präzise auf Unternehmensdaten zugreift und keine Halluzinationen produziert.
+Damit die Ergebnisse verlässlich bleiben, arbeite ich mit RAG über MongoDB Atlas Vector Search, mit Critic-Agents für die automatische Qualitätsprüfung und mit Human-in-the-Loop-Freigaben an kritischen Stellen. Auch die Kosten behalte ich im Blick: Der Token-Verbrauch wird pro Mandant erfasst und über Stripe abgerechnet.
 
-Kurz gesagt: Ich verwandle komplexe technische Herausforderungen in smarte, sichere und wirtschaftlich sinnvolle Produkte. Schau dich gerne um und entdecke meine aktuellen Projekte!`;
+Mein größtes Projekt, AI Orchestra, verbindet zehn spezialisierte Agenten zu einem einzigen System. Schau dich gerne um und entdecke meine aktuellen Projekte!`;
+
+// Einmal vorberechnet, damit das Rendern rein bleibt (react-hooks/purity): kein Math.random() im Render.
+const EQUALIZER_BARS = [1, 2, 3, 4, 5].map((i) => ({
+    id: i,
+    duration: 0.8 + Math.random() * 0.4,
+    delay: i * 0.1,
+}));
 
 const CustomAIAssistant = () => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -23,16 +30,19 @@ const CustomAIAssistant = () => {
 
     // Initialize Speech Synthesis
     useEffect(() => {
-        // We just ensure synthesis is ready. Voices might load async.
-        const loadVoices = () => synthRef.current.getVoices();
+        // Ref-Wert lokal festhalten, damit das Cleanup dieselbe Instanz nutzt (exhaustive-deps).
+        const synth = synthRef.current;
 
-        if (synthRef.current.onvoiceschanged !== undefined) {
-            synthRef.current.onvoiceschanged = loadVoices;
+        // We just ensure synthesis is ready. Voices might load async.
+        const loadVoices = () => synth.getVoices();
+
+        if (synth.onvoiceschanged !== undefined) {
+            synth.onvoiceschanged = loadVoices;
         }
         loadVoices();
 
         return () => {
-            synthRef.current.cancel();
+            synth.cancel();
         };
     }, []);
 
@@ -98,19 +108,19 @@ const CustomAIAssistant = () => {
                         >
                             <GraphicEqIcon sx={{ color: '#00d9ff', fontSize: 18 }} />
                             <Typography variant="caption" sx={{ color: '#00d9ff', fontFamily: 'Orbitron, sans-serif', fontWeight: 600, letterSpacing: 1 }}>
-                                ASISTANT SPEAKING
+                                ASSISTANT SPEAKING
                             </Typography>
 
                             {/* Equalizer Animation Effect */}
                             <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center', height: 16 }}>
-                                {[1, 2, 3, 4, 5].map((i) => (
+                                {EQUALIZER_BARS.map((bar) => (
                                     <motion.div
-                                        key={i}
+                                        key={bar.id}
                                         animate={{ height: ['20%', '100%', '20%'] }}
                                         transition={{
                                             repeat: Infinity,
-                                            duration: 0.8 + (Math.random() * 0.4),
-                                            delay: i * 0.1
+                                            duration: bar.duration,
+                                            delay: bar.delay
                                         }}
                                         style={{ width: 3, backgroundColor: '#00d9ff', borderRadius: 2 }}
                                     />
